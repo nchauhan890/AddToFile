@@ -1,4 +1,17 @@
 {
-    "add_to_suggest_new_file": false,
-    "add_to_single_view": false
+    // add a 'New File' option in the list of views
+    // in the popup menu
+    "add_to_suggest_new_file": true,
+
+    // automatically select the view if there is only 1 other view
+    // and assuming the 'New File' option is disabled
+    "add_to_single_view": true,
+
+    // show a status message when selection is copied
+    "show_status_message": true,
+
+    // choose custom status message:
+    //     include {name} in the string to insert the
+    //     the file name
+    "status_message": "Copied to {name}"
 }
