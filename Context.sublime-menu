@@ -1,0 +1,11 @@
+[
+    {
+        "caption": "-",
+        "id": "add"
+    },
+    {
+        "id": "edit",
+        "caption": "Add to...",
+        "command": "add_to"
+    }
+]
