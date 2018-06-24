@@ -22,11 +22,11 @@ Edit the AddToFile.sublime-settings to configure this plugin
 
 Setting                    | Description
 --------------------------:|:------------
-`suggest_new_file`         |Add an option to **create a new file** inside the file selection panel. Default set to true.      
-`add_to_single_view`       |**Automatically select the view** in the file selection panel if there is only one view in the list. Default set to false. <sup id="text1">[[1]](#footnote1)</sup>
-`show_status_message`      |Show a **message in the status bar** when text is copied. Default set to true
-`show_file_path`           |Show the **full file path** instead of the file name in the file selection panel to help distinguish files with the same name in different directories. Default set to false. <sup id="text2">[[2]](#footnote2)</sup>
-`status_message`           |Set the **message to appear in the status bar**. Defaults to "Copied to {name}". <sup id="text3">[[3]](#footnote3)</sup>
+`suggest_new_file`         |Add an option to **create a new file** inside the file selection panel. Defaults to true.      
+`add_to_single_view`       |**Automatically select the view** in the file selection panel if there is only one view in the list. Defaults to false. <sup id="text1">[[1]](#footnote1)</sup>
+`show_status_message`      |Show a **message in the status bar** when text is copied. Defaults to true
+`show_file_path`           |Show the **full file path** instead of the file name in the file selection panel to help distinguish files with the same name in different directories. Defaults to false. <sup id="text2">[[2]](#footnote2)</sup>
+`status_message`           |Set the **message to appear in the status bar**. Defaults to `Copied to {name}`. <sup id="text3">[[3]](#footnote3)</sup>
 `keep_focus`               |Keep the **focus on the source file** when copying rather than switching to the destination file's view. Defaults to true.
 `show_preview`             |Show a **3-line file preview** in the file selection panel. Defaults to false.
 `scroll_view`              |**Scroll the view** to where the text was copied. Defaults to true. <sup id="text4">[[4]](#footnote4)</sup>
@@ -35,20 +35,28 @@ Setting                    | Description
 
 <a name="footnote2">2</a>: If there are two files called 'AddToFile.py' in different directories, the file selection panel will display 'AddToFile.py' twice if this setting is set to false. However, the order that appears in the selection panel is the order of the view tabs from left to right which means the files could be distinguished by looking at which one's view tab is furthest left/right. [↑](#text2)
 
-<a name="footnote3">3</a>: Can include {name}, {path}, {dir}, {sourcename}, {sourcepath} and {sourcedir} which will be replaced with their corresponding values:
+<a name="footnote3">3</a>: Can include `{name}`, `{path}`, `{dir}`, `{sourcename}`, `{sourcepath}` and `{sourcedir}` which will be replaced with their corresponding values:
 
-Segment    |Description
-----------:|--------------
- name      |file name
- path      |the path to the file including the file
- dir       |the path to the file excluding the file
- sourcename|source file name
- sourcepath|the path to the source file including the file
- sourcedir |the path to the source file excluding the file
+Segment     |Description
+-----------:|--------------
+ `name `     |file name
+ `path`      |the path to the file including the file
+ `dir`       |the path to the file excluding the file
+ `sourcename`|source file name
+ `sourcepath`|the path to the source file including the file
+ `sourcedir `|the path to the source file excluding the file
  
  [↑](#text3)
 
 <a name="footnote4">4</a>: `keep_focus` must be set to false to allow the view to switch.  [↑](#text4)
+
+
+### Installation
+
+AddToFile can be installed manually:
+1. Download the [`.zip file`](https://github.com/nchauhan890/AddToFile/archive/master.zip "AddToFile.zip") 
+2. Unzip (and rename to `AddToFile`)
+3. Move to the `Packages` directory which can be opened through `Preferences --> Browse Packages...`
 
 
 ### TODO:
