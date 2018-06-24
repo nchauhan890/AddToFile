@@ -11,6 +11,14 @@ class AddToCommand(sublime_plugin.TextCommand):
                 # if view.file_name()
                 if view != sublime.active_window().active_view()]
 
+    def get_view_path(self, view):
+        try:
+            return view.file_name()
+            # return a the 'unsplit' file path
+
+        except (AttributeError, TypeError):
+            return os.path.join('untitled', 'untitled')
+
     def get_contents(self, view):
         length = 0
         if isinstance(view, sublime.View):
@@ -65,15 +73,22 @@ class AddToCommand(sublime_plugin.TextCommand):
 
         sublime.active_window().focus_view(v)  # use the starting view
         # override when new file is created to stop focus switching
-
         # run insert command to add text
         string = settings.get('status_message')
         string = string.format(name=self.split_view_path(f)[1],
-                               path=self.split_view_path(f)[0],
-                               sourcename=os.path.split(
+                               path=self.get_view_path(f),
+                               dir=self.split_view_path(f)[0],
+                               # substitute values from destination file
+                               sourcename=self.split_view_path(
                                sublime.active_window().active_view().file_name())[1],
-                               sourcepath=os.path.split(
+
+                               sourcepath=self.get_view_path(
+                               sublime.active_window().active_view().file_name()),
+
+                               sourcedir=self.split_view_path(
                                sublime.active_window().active_view().file_name())[0])
+                               # substitute values from source file
+
         # set string using template from settings, substituting
         # values accordingly
 
@@ -82,7 +97,7 @@ class AddToCommand(sublime_plugin.TextCommand):
             # switch focus to destination file if specified in settings
 
             if settings.get('scroll_view', False):
-                f.show(f.size(0))
+                f.show(f.size())
 
         if settings.get('show_status_message', False):
             # run status bar message command if value specified
@@ -108,6 +123,11 @@ class AddToCommand(sublime_plugin.TextCommand):
             self.paths = self.get_split_view_paths(self.items)
         # make a list of the view paths
 
+        if settings.get('add_to_single_view', False) and len(self.items) == 1:
+            self.on_done(0)
+            # auto-run on_done if there's only 1 other view and if specified
+            # in settings
+
         if settings.get('show_preview', False):
             self.view_content = [self.get_contents(view)
                                  for view in sublime.active_window().views()
@@ -128,18 +148,16 @@ class AddToCommand(sublime_plugin.TextCommand):
             # create popup list of strings which contains the file name and
             # conten
 
-            if settings.get('add_to_suggest_new_file', False):
+            if settings.get('suggest_new_file', False):
                 self.popup.append(['New File', '', '', ''])
                 # and 'New File' to popup list with blank lines
 
-        if settings.get('add_to_single_view', False) and len(self.items) == 1:
-            self.on_done(0)
-            # auto-run on_done if there's only 1 other view and if specified
-            # in settings
-
-        elif settings.get('add_to_suggest_new_file', False):
+        if settings.get('suggest_new_file', False):
             self.items.append('New File')
+            self.paths.append(['New File', 'New File'])
             # add 'new file' option if specified settings
+            # 'override' addition of a path to self.paths by creating
+            # a mock path called 'New File / New File'
 
         if settings.get('show_preview', False):
             sublime.active_window().show_quick_panel(self.popup,
