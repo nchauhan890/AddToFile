@@ -35,7 +35,18 @@ Setting                    | Description
 
 <a name="footnote2">2</a>: If there are two files called 'AddToFile.py' in different directories, the file selection panel will display 'AddToFile.py' twice if this setting is set to false. However, the order that appears in the selection panel is the order of the view tabs from left to right which means the files could be distinguished by looking at which one's view tab is furthest left/right. [↑](#text2)
 
-<a name="footnote3">3</a>: Can include {name}, {path}, {sourcename} and {sourcepath} which will be replaced with their corresponding values. [↑](#text3)
+<a name="footnote3">3</a>: Can include {name}, {path}, {dir}, {sourcename}, {sourcepath} and {sourcedir} which will be replaced with their corresponding values:
+
+Segment    |Description
+----------:|--------------
+ name      |file name
+ path      |the path to the file including the file
+ dir       |the path to the file excluding the file
+ sourcename|source file name
+ sourcepath|the path to the source file including the file
+ sourcedir |the path to the source file excluding the file
+ 
+ [↑](#text3)
 
 <a name="footnote4">4</a>: `keep_focus` must be set to false to allow the view to switch.  [↑](#text4)
 
