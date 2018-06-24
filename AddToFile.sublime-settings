@@ -1,7 +1,7 @@
 {
     // add a 'New File' option in the list of views
     // in the popup menu
-    "add_to_suggest_new_file": true,
+    "suggest_new_file": true,
 
     // automatically select the view if there is only 1 other view
     // and assuming the 'New File' option is disabled
@@ -18,30 +18,39 @@
     //     include {name} in the string to insert the
     //     the file name
     //
-    //     include {path} in the string to insert the
+    //     include {dir} in the string to insert the
     //     path to the file (excluding the file name)
+    //
+    //     include {path} in the string to insert the path
+    //     to the file (including the file name)
     //
     //     include {sourcename} in the string to
     //     insert the source file's name
     //
-    //     include {sourcepath} in the string to
+    //     include {sourcedir} in the string to
     //     insert the path to the source file
     //     (excluding the file name)
     //
+    //     include {sourcepath} in the string to insert
+    //     the file to the source file (including the
+    //     file name)
+    //
     // files without a directory will default to name and path 'untitled'
     //
-    // example status message:
-    // "status_message": "Copied {sourcename} from {sourcepath} to {name} in {path}",
+    // example status messages:
+    //     "status_message": "Copied from {sourcename}
+    //                        in {sourcedir} to {name} in {dir}",
+    //     "status_message": "Copied to {path}"
     "status_message": "Copied to {name}",
 
     // keep the view focus on the file being copied from
     // instead of switching to the destination file
-    "keep_focus": false,
-
-    // scroll the view to the end of the file being copied to
-    // requires keep_focus to be false
-    "scroll_view": true,
+    "keep_focus": true,
 
     // show preview of file contents in popup menu
-    "show_preview": true,
+    "show_preview": false,
+
+    // scroll the view to the end of the file being copied to
+    // requires 'keep_focus' to be false
+    "scroll_view": true,
 }

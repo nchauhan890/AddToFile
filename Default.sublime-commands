@@ -1,6 +1,22 @@
 [
     {
-        "caption": "Add to File",
+        "caption": "AddToFile: Add to...",
         "command": "add_to"
+    },
+    {
+        "caption": "Preferences: AddToFile Settings",
+        "command": "edit_settings", "args":
+        {
+            "base_file": "${packages}/AddToFile/AddToFile.sublime-settings",
+            "default": "// AddToFile Settings - User\n{\n\t$0\n}\n"
+        }
+    },
+    {
+        "caption": "Preferences: AddToFile Key Bindings",
+        "command": "edit_settings", "args":
+        {
+            "base_file": "${packages}/AddToFile/Default ($platform).sublime-keymap",
+            "default": "// AddToFile Key Bindings - User\n[\n\t$0\n]\n"
+        }
     }
 ]
