@@ -9,10 +9,10 @@ When run, a panel appears containing a list of currently open files (excluding t
 
 ### Demonstration
 
-![demo-1](demonstration-1.png)
+![demo-1](assets/demonstration-1.png)
 Demonstration with standard settings
 
-![demo-2](demonstration-2.png)
+![demo-2](assets/demonstration-2.png)
 Demonstration with file previews set to true and file paths set to true
 
 
@@ -22,7 +22,7 @@ Edit the AddToFile.sublime-settings to configure this plugin
 
 Setting                    | Description
 --------------------------:|:------------
-`suggest_new_file`         |Add an option to **create a new file** inside the file selection panel. Defaults to true.      
+`suggest_new_file`         |Add an option to **create a new file** inside the file selection panel. Defaults to true.
 `add_to_single_view`       |**Automatically select the view** in the file selection panel if there is only one view in the list. Defaults to false. <sup id="text1">[[1]](#footnote1)</sup>
 `show_status_message`      |Show a **message in the status bar** when text is copied. Defaults to true
 `show_file_path`           |Show the **full file path** instead of the file name in the file selection panel to help distinguish files with the same name in different directories. Defaults to false. <sup id="text2">[[2]](#footnote2)</sup>
@@ -45,7 +45,7 @@ Segment     |Description
  `sourcename`|source file name
  `sourcepath`|the path to the source file including the file
  `sourcedir `|the path to the source file excluding the file
- 
+
  [↑](#text3)
 
 <a name="footnote4">4</a>: `keep_focus` must be set to false to allow the view to switch.  [↑](#text4)
@@ -54,9 +54,10 @@ Segment     |Description
 ### Installation
 
 AddToFile can be installed manually:
-1. Download the [`.zip file`](https://github.com/nchauhan890/AddToFile/archive/master.zip "AddToFile.zip") 
-2. Unzip (and rename to `AddToFile`)
-3. Move to the `Packages` directory which can be opened through `Preferences --> Browse Packages...`
+1. Download the [`.zip file`](https://github.com/nchauhan890/AddToFile/archive/master.zip "AddToFile.zip")
+2. Unzip the `.zip` file
+3. Rename to `AddToFile`
+4. Move to the `Packages` directory which can be opened through `Preferences --> Browse Packages...`
 
 
 ### TODO:
