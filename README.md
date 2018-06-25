@@ -18,7 +18,7 @@ Demonstration with file previews set to true and file paths set to true
 
 ### Configuration
 
-Edit the AddToFile.sublime-settings to configure this plugin
+Edit the AddToFile.sublime-settings to configure this plugin. Open through `Preferences --> Package Settings --> AddToFile --> Settings - User` or the command palette <a id="config1">[↓](#commandpalette)</a>
 
 Setting                    | Description
 --------------------------:|:------------
@@ -51,6 +51,22 @@ Segment     |Description
 <a name="footnote4">4</a>: `keep_focus` must be set to false to allow the view to switch.  [↑](#text4)
 
 
+### Command Palette<a name="commandpalette"></a>
+
+Open the command palette and type `AddToFile` to show available commands:
+
+Command                                |Description
+--------------------------------------:|--------------
+ `AddToFile: Add to... `               |Run AddToFile command
+ `Preferences: AddToFile Settings`     |Edit AddToFile user settings
+ `Preferences: AddToFile Key Bindings` |Edit AddToFile key binding
+
+
+### Context Menu
+
+Run the AddToFile command via `Add to...` in the view context menu
+
+
 ### Installation
 
 AddToFile can be installed manually:
@@ -59,11 +75,15 @@ AddToFile can be installed manually:
 3. Rename to `AddToFile`
 4. Move to the `Packages` directory which can be opened through `Preferences --> Browse Packages...`
 
+Using package control:
+1. Open package control
+2. Type `AddToFile`
+
 
 ### TODO:
 
 - [x] test what `add_to_single_view` will do if there is no other view and `add_to_suggest_new_file` is set to true.
 - [x] test what happens if `show_file_path` is set to true and there are 2 views with the same name in different directories.
-- [x] add {dir} in `status message` and replace {path}.
-- [x] implement `keep focus` as false and not just true.
+- [x] add `{dir}` in `status message` and replace `{path}`.
+- [x] implement `keep_focus` as false and not just true.
 - [x] amend default values in AddToFile.sublime-settings.
