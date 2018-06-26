@@ -4,8 +4,13 @@
         "id": "add"
     },
     {
-        "id": "edit",
+        "id": "add_to",
         "caption": "Add to...",
         "command": "add_to"
+    },
+    {
+        "id": "add_to_new_file",
+        "caption": "Add to New File",
+        "command": "add_to_new_file"
     }
 ]

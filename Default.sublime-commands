@@ -18,5 +18,9 @@
             "base_file": "${packages}/AddToFile/Default ($platform).sublime-keymap",
             "default": "// AddToFile Key Bindings - User\n[\n\t$0\n]\n"
         }
+    },
+    {
+        "caption": "AddToFile: Add to New File",
+        "command": "add_to_new_file"
     }
 ]

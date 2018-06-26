@@ -60,17 +60,32 @@ Command                                |Description
  `AddToFile: Add to... `               |Run AddToFile command
  `Preferences: AddToFile Settings`     |Edit AddToFile user settings
  `Preferences: AddToFile Key Bindings` |Edit AddToFile key binding
+ `AddToFile: Add to New File`          |Run AddToFile command, but explicitly specifying to create a new file
 
 
 ### Context Menu
 
-Run the AddToFile command via `Add to...` in the view context menu
+The following commands are available via the view's context menu
 
+Command                     |Description
+---------------------------:|--------------
+ `Add to... `               |Run `add_to` command
+ `Add to New File`          |Run `add_to_new_file` command
+
+
+### Key Bindings
+
+The following describe the default key bindings associated with AddToFile
+
+Key Binding              |Command
+------------------------:|--------------
+ `f8`                    |Run `add_to` command
+ `ctrl+f8` (OSX `cmd+f8`)|Run `add_to_new_file` command
 
 ### Installation
 
 AddToFile can be installed manually:
-1. Download the [`.zip file`](https://github.com/nchauhan890/AddToFile/archive/master.zip "AddToFile.zip")
+1. Download the [`.zip file`](https://github.com/nchauhan890/AddToFile/archive/master.zip "AddToFile.zip") or browse to the latest release
 2. Unzip the `.zip` file
 3. Rename to `AddToFile`
 4. Move to the `Packages` directory which can be opened through `Preferences --> Browse Packages...`

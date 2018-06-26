@@ -58,7 +58,14 @@ class AddToCommand(sublime_plugin.TextCommand):
 
         if val == -1:
             return  # end if called with -1 value
-        if self.items[val] == 'New File':
+        elif val == 'New File':
+            f = sublime.active_window().new_file()
+            self.items = self.get_items()
+            # do the same as below, but it will not have to get and item from
+            # the list with a string index which would have raised an error
+
+        elif self.items[val] == 'New File':  # support for
+            # AddToNewFileCommand invocation;
             # if the selected option is 'New File',
             # create a new file
             f = sublime.active_window().new_file()
@@ -105,15 +112,22 @@ class AddToCommand(sublime_plugin.TextCommand):
             sublime.active_window().run_command('add_status_bar_msg',
                                                 {"msg": string})
 
-    def run(self, edit):
+    def run(self, edit, new_file=False):
         settings = sublime.load_settings('AddToFile.sublime-settings')
         # load settings file
 
-        if not ''.join(self.view.substr(s) for s in self.view.sel()):
-            return  # end if the selection is empty
+        # if not ''.join(self.view.substr(s) for s in self.view.sel()):
+        #     return
+        if all(s.empty() for s in self.view.sel()):
+            return # end if the selection is empty
 
         self.items = self.get_items()
         # add list of views, excluding the current view
+
+        if new_file is True:
+            self.on_done('New File')  # automatically run on_done with value
+            # New File to override method
+            return  # end the command when it has finished
 
         if settings.get('show_file_path', False):
             self.paths = self.get_view_paths(self.items)
@@ -187,3 +201,11 @@ class AddStatusBarMsg(sublime_plugin.WindowCommand):
     def run(self, msg):
         # set the status bar message
         sublime.status_message(msg)
+
+
+class AddToNewFileCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        sublime.active_window().active_view().run_command('add_to', {"new_file": True})
+        # called by command: "add_to_new_file", but theoretically could also be
+        # caled by  command: "add_to", args: {"new_file": true}
+        # in JSON
