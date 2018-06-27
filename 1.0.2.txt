@@ -1,0 +1,8 @@
+1.0.2
+-----
+
+- Added 'add_to_new_file' command which directly copies selection
+  to new file instead of having to explicitly select it from the
+  file selection panel
+- Update README
+- Automated checks passed for package control pull request
