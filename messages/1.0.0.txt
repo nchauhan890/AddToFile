@@ -1,4 +1,4 @@
 1.0.0
 -----
 
-This is the first working release (so no changes!)
+- Initial AddToFile release
