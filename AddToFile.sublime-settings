@@ -1,17 +1,23 @@
 {
     // add a 'New File' option in the list of views
-    // in the popup menu
-    "suggest_new_file": true,
+    // in the file selection panel
+    "suggest_new_file": false,
 
     // automatically select the view if there is only 1 other view
-    // and assuming the 'New File' option is disabled
+    // and assuming 'suggest_new_file' option is disabled
     "add_to_single_view": false,
 
     // show a status message when selection is copied
     "show_status_message": true,
 
-    // show file path in the popup menu instead of the file name
+    // show file path in the file selection panel
+    // instead of the file name
     "show_file_path": false,
+
+    // show the containing folder of the file instead of the
+    // full file path
+    // will be overriden if 'show_file_path' is enabled
+    "show_containing_folder": false,
 
     // choose custom status message:
     //
@@ -47,7 +53,7 @@
     // instead of switching to the destination file
     "keep_focus": true,
 
-    // show preview of file contents in popup menu
+    // show preview of file contents in file selection panel
     "show_preview": false,
 
     // scroll the view to the end of the file being copied to

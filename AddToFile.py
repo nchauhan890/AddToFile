@@ -151,7 +151,7 @@ class AddToCommand(sublime_plugin.TextCommand):
         # if not ''.join(self.view.substr(s) for s in self.view.sel()):
         #     return
         if all(s.empty() for s in self.view.sel()):
-            return # end if the selection is empty
+            return  # end if the selection is empty
 
         self.items = self.get_items()
         # add list of views, excluding the current view
@@ -167,9 +167,25 @@ class AddToCommand(sublime_plugin.TextCommand):
             self.paths = self.get_view_paths(self.items)
             # get the 'unsplit' paths
 
+        elif settings.get('show_containing_folder', False):
+            self.paths = [os.path.join(str(os.path.split(os.path.split(path)[0])[1]),
+                                       # this returns the folder containing the file:
+                                       # 1 - split the path
+                                       # 2 - get the head [0]
+                                       # 3 - split the head
+                                       # 4 - get the tail [1]
+                                       str(os.path.split(path)[1]))
+                                       # this returns the file itself
+                          for path in self.get_view_paths(self.items)]
+            # split the directory to the containing folder
+            # and select the folder itself;
+            # join to the file name returned from
+            # get_split_view_paths
+
         else:
             self.paths = self.get_split_view_paths(self.items)
-        # make a list of the view paths
+            # make a list of the view paths
+        print(self.paths)
 
         if settings.get('add_to_single_view', False) and len(self.items) == 1:
             self.on_done(0)
@@ -229,7 +245,8 @@ class AddToCommand(sublime_plugin.TextCommand):
                 sublime.active_window().show_quick_panel(self.popup,
                                                          self.on_done)
                 # create popup with the *file name + preview* if specified in settings
-            elif settings.get('show_file_path', False):
+            elif (settings.get('show_file_path', False)
+                  or settings.get('show_containing_folder', False)):
                 sublime.active_window().show_quick_panel([path
                                                           for path in self.paths],
                                                          self.on_done)
@@ -239,9 +256,6 @@ class AddToCommand(sublime_plugin.TextCommand):
                                                           for path in self.paths],
                                                          self.on_done)
                 # create popup with the *file names* if specified in settings
-                self.view.show_quick_panel([path[1]
-                                           for path in self.paths],
-                                          self.on_done)
 
 
 class InsertToEndCommand(sublime_plugin.TextCommand):
