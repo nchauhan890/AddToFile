@@ -1,7 +1,7 @@
 {
     // add a 'New File' option in the list of views
     // in the file selection panel
-    "suggest_new_file": false,
+    "suggest_new_file": true,
 
     // automatically select the view if there is only 1 other view
     // and assuming 'suggest_new_file' option is disabled
@@ -63,5 +63,10 @@
     // will show a popup menu at the cursor instead of a panel
     // file previews will not be shown
     // 'show_preview' setting will be ignored
-    "show_popup": false
+    "show_popup": false,
+
+    // automatically use the 'smart_add_to_command' instead
+    // overrides 'show_file_path' setting
+    // overrides 'show_containing_folder' setting
+    "auto_smart": false
 }

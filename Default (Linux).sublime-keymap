@@ -3,6 +3,10 @@
     {"keys": ["f8"], "command": "add_to"},
 
     // run the add_to_new_file command which is the same as:
-    // command: "add_to", args: {"new_file": true}
-    { "keys": ["ctrl+f8"], "command": "add_to_new_file"}
+    // "command": "add_to", "args": {"new_file": true}
+    { "keys": ["ctrl+f8"], "command": "add_to_new_file"},
+
+    // run the smart_add_to command which is the same as:
+    // "command": "add_to", "args": {"smart": true}
+    { "keys": ["shift+f8"], "command": "smart_add_to"}
 ]
