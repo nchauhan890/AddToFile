@@ -7,6 +7,7 @@
 
 When run, a panel appears containing a list of currently open files (excluding the current file). The content inside the selection will be copied to the end of the file selected from the panel. Note that the command will not be invoked if the selection is empty.
 
+
 ### Demonstration
 
 ![demo-1](assets/demonstration-1.png)
@@ -14,6 +15,9 @@ Demonstration with standard settings
 
 ![demo-2](assets/demonstration-2.png)
 Demonstration with file previews set to true and file paths set to true
+
+![demo-3](assets/demonstration-3.png)
+Demonstration with popup setting set to true
 
 
 ### Configuration
@@ -56,6 +60,7 @@ Segment     |Description
 
 <a name="footnote6">6</a>: Usually, file names are shown on their own, however, if there are multiple files with the same name, a folder will be shown in brackets: the folder name is the first folder in the 2 conflicting file paths whose name is different. E.g. `(GitHub) AddToFile.py` and `(Documents) AddToFile.py` would be shown for 2 files in directories `GitHub/AddToFile/AddToFile.py` and `Documents/AddToFile/AddToFile.py`  [↑](#text6)
 
+
 ### Command Palette<a name="commandpalette"></a>
 
 Open the command palette and type `AddToFile` to show available commands:
@@ -90,6 +95,7 @@ Key Binding              |Command
  `f8`                    |Run `add_to` command
  `ctrl+f8` (OSX `cmd+f8`)|Run `add_to_new_file` command
  `shift+f8`              |Run `smart_add_to` command
+
 
 ### Installation
 
