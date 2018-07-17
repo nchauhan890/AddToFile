@@ -81,7 +81,7 @@ class AddToCommand(sublime_plugin.TextCommand):
         if val == -1:
             return  # end if called with -1 value
         elif val == 'New File':
-            f = sublime.active_window().new_file()
+            f = self.view.window().new_file()
             self.items = self.get_items()
             # do the same as below, but it will not have to get and item from
             # the list with a string index which would have raised an error
@@ -89,14 +89,14 @@ class AddToCommand(sublime_plugin.TextCommand):
             # AddToNewFileCommand invocation;
             # if the selected option is 'New File',
             # create a new file
-            f = sublime.active_window().new_file()
+            f = self.view.window().new_file()
             self.items = self.get_items()
         else:  # selected item isn't a file so must be 'new file'
             f = self.items[val]
         f.run_command('insert_to_end',
                       {"lines": [self.view.substr(s)
                                  for s in self.view.sel()]})
-        sublime.active_window().focus_view(v)  # use the starting view
+        self.view.window().focus_view(v)  # use the starting view
         # override when new file is created to stop focus switching
         # run insert command to add text
         string = settings.get('status_message')
@@ -114,15 +114,15 @@ class AddToCommand(sublime_plugin.TextCommand):
         # set string using template from settings, substituting
         # values accordingly
         if not settings.get('keep_focus', True):
-            sublime.active_window().focus_view(f)
+            self.view.window().focus_view(f)
             # switch focus to destination file if specified in settings
             if settings.get('scroll_view', False):
                 f.show(f.size())
         if settings.get('show_status_message', False):
             # run status bar message command if value specified
             # in settings
-            sublime.active_window().run_command('add_status_bar_msg',
-                                                {"msg": string})
+            self.view.window().run_command('add_status_bar_msg',
+                                           {"msg": string})
 
     def run(self, edit, new_file=False, smart=False):
         """handles display of popup with correct data specified in settings"""
@@ -180,13 +180,13 @@ class AddToCommand(sublime_plugin.TextCommand):
                         self.popup.append(['New File', '', '', ''])
                         # and 'New File' to popup list with blank lines
 
-                    sublime.active_window().show_quick_panel(self.popup,
-                                                             self.on_done)
+                    self.view.window().show_quick_panel(self.popup,
+                                                        self.on_done)
                     # show panel with file path and preview
                 else:
                     # otherwise show the panel with just the file paths
-                    sublime.active_window().show_quick_panel(self.paths,
-                                                             self.on_done)
+                    self.view.window().show_quick_panel(self.paths,
+                                                        self.on_done)
             return  # end function as it has already inserted text
 
         if new_file is True:
@@ -199,13 +199,14 @@ class AddToCommand(sublime_plugin.TextCommand):
             # get the 'unsplit' paths
 
         elif settings.get('show_containing_folder', False):
-            self.paths = [os.path.join(str(os.path.split(os.path.split(path)[0])[1]),
-                                       # this returns the folder containing the file:
-                                       # 1 - split the path
-                                       # 2 - get the head [0]
-                                       # 3 - split the head
-                                       # 4 - get the tail [1]
-                                       str(os.path.split(path)[1]))
+            self.paths = [os.path.join(
+                          str(os.path.split(os.path.split(path)[0])[1]),
+                          # this returns the folder containing the file:
+                          # 1 - split the path
+                          # 2 - get the head [0]
+                          # 3 - split the head
+                          # 4 - get the tail [1]
+                          str(os.path.split(path)[1]))
                           # this returns the file itself
                           for path in self.get_view_paths(self.items)]
             # split the directory to the containing folder
@@ -278,19 +279,20 @@ class AddToCommand(sublime_plugin.TextCommand):
                                           self.on_done)
         else:
             if settings.get('show_preview', False):
-                sublime.active_window().show_quick_panel(self.popup,
-                                                         self.on_done)
-                # create popup with the *file name + preview* if specified in settings
+                self.view.window().show_quick_panel(self.popup,
+                                                    self.on_done)
+                # create popup with the *file name + preview* if
+                # specified in settings
             elif (settings.get('show_file_path', False)
                   or settings.get('show_containing_folder', False)):
-                sublime.active_window().show_quick_panel([path
-                                                          for path in self.paths],
-                                                         self.on_done)
+                self.view.window().show_quick_panel([path
+                                                     for path in self.paths],
+                                                    self.on_done)
                 # create popup with the *file paths* if specified in settings
             else:
-                sublime.active_window().show_quick_panel([path[1]
-                                                          for path in self.paths],
-                                                         self.on_done)
+                self.view.window().show_quick_panel([path[1]
+                                                     for path in self.paths],
+                                                    self.on_done)
                 # create popup with the *file names* if specified in settings
 
 
@@ -347,7 +349,8 @@ class GetPreviewCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         # 'user interface' style command which scrolls the view
         # to show the lines which are previewed
-        # sublime.message_dialog(', '.join(self.view.settings().get('preview_lines', [])))
+        # sublime.message_dialog(', '.join(self.view.settings().get(
+        #                                 'preview_lines', [])))
         self.view.show(
             self.view.find(
                 self.view.settings().get('preview_lines', [])[0],
@@ -355,7 +358,8 @@ class GetPreviewCommand(sublime_plugin.TextCommand):
         # scroll the view to the begin point of the first line that
         # will be previewed
         return self.view.settings().get('preview_lines',
-                                        AddToCommand.get_contents(self, self.view))
+                                        AddToCommand.get_contents(self,
+                                                                  self.view))
         # return the individual view's settings of what 3 lines to preview,
         # if there is no preview set, use the standard preview from line 1
 
@@ -374,7 +378,8 @@ class SmartDisplay:
         # 1. normalise the path
         # 2. split path by separator
         except (AttributeError, TypeError):
-            # if encountered an error - untitled file, then return it as untitled
+            # if encountered an error - untitled file,
+            # then return it as untitled
             return ['untitled']
 
     @staticmethod
