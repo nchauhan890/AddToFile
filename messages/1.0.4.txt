@@ -1,0 +1,9 @@
+1.0.4
+-----
+
+- Added show_containing_folder setting which shows only the containing folder
+  instead of the full file path. (Overrides show_file_path setting.)
+- Added smart_add_to command which shows a folder name in brackets if there
+  are 2 conflicting file paths in the file selection panel.
+- Added auto_smart command which causes smart_add_to to be run automatically
+  instead of add_to.
